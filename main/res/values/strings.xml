@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Android_Cryptography</string>
+    <string name="Encrypt">Encrypt</string>
+    <string name="Decrypt">Decrypt</string>
+    <string name="Scytale">Scytale</string>
+    <string name="Ceaser">Ceaser</string>
+    <string name="Viginere">Viginére</string>
+    <string name="Encrypted_message">Encrypted Message</string>
+    <string name="Decrypted_message">Decrypted Message</string>
+    <string name="name" >Which Cipher?</string>
+    <string name="LabelE">Encrypted text:</string>
+    <string name="LabelD">Print text:</string>
+    <string name="key">Key: </string>
+</resources>

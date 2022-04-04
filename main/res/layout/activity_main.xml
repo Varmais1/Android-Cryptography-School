@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Name: Ishaan Varma -->
+<!-- Co-coder: Ayowade Owojori -->
+<!-- Purpose: Sets the layout -->
+<!-- Date: 3/29/22 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/name"
+        android:textSize="25dp"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="20dp" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/Ceaser"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/Ceaser"
+            android:textSize="25dp"
+            />
+
+        <RadioButton
+            android:id="@+id/Scytale"
+            android:layout_width="185dp"
+            android:layout_height="match_parent"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/Scytale"
+            android:textSize="25dp"
+            />
+
+        <RadioButton
+            android:id="@+id/Viginere"
+            android:layout_width="185dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Viginere"
+            android:textSize="25dp"
+            />
+    </RadioGroup>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="60dp"
+        />
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        >
+    <TextView
+        android:id="@+id/Print_Text_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/LabelD"
+        android:textSize="25dp"
+
+        />
+
+    <TextView
+        android:id="@+id/Encrypted_Text_View"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="200dp"
+        android:text="@string/LabelE"
+        android:textSize="25dp" />
+
+    </TableRow>
+   <View
+       android:layout_width="1dp"
+       android:layout_height="20dp"
+   />
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="30dp">
+
+        <EditText
+            android:id="@+id/print_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ems="12"
+            android:inputType="text" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="1dp" />
+
+        <EditText
+            android:id="@+id/encrypt_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:ems="12"
+            android:inputType="text"
+
+            />
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="417dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="30dp">
+
+        <Button
+            android:id="@+id/EncryptButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Encrypt">
+
+        </Button>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="1dp" />
+
+        <Button
+            android:id="@+id/DecryptButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Decrypt">
+
+        </Button>
+
+    </TableRow>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="40dp" />
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="260dp"
+            android:text="@string/key"
+            android:textSize="25dp" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        >
+        <EditText
+            android:id="@+id/key"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ems="12"
+            android:inputType= "text"
+            android:layout_marginLeft="165dp"
+            />
+
+
+    </TableRow>
+
+
+
+</LinearLayout>
