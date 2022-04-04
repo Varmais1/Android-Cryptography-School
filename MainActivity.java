@@ -327,9 +327,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     if (97 <= shifter && shifter <= 122) {
                                         shifter -= 32;
                                     }
-                                    letter = (char) ((int) (letter) + (int) (shifter) - 65);
-                                    if (letter > 90) {
-                                        letter -= 26;
+                                    letter = (char) ((int) (letter) - ((int) (shifter) - 65));
+                                    if (letter < 65) {
+                                        letter += 26;
                                     }
                                     message_encrypted += Character.toString(letter);
                                 }
