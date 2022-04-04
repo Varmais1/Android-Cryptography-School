@@ -125,45 +125,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String changeable = print.getText().toString();
                     String mover2 = key.getText().toString();
                     String output = "";
-                    //the length and height of the array which the message is put in.
-                    int arrayLength = Integer.parseInt(mover2);
-                    System.out.println("arrayLength: "+arrayLength);
-                    int arrayHeight = changeable.length()/arrayLength;
-                    System.out.println("arrayHeight: "+arrayHeight);
-                    //if there are not enough rows, then add one
-                    if(changeable.length()%arrayLength != 0) {
-                        arrayHeight++;
-                    }
-                    //the array which the message is put in.
-                    char[][] text = new char[arrayLength][arrayHeight];
-                    //sets every single character in array to @
-                    for(int i = 0; i < text.length; i++) {
-                        for(int j = 0; j < text[0].length; j++) {
-                            text[i][j] = '@';
+                    if(mover2 != "") {
+                        //the length and height of the array which the message is put in.
+                        int arrayLength = Integer.parseInt(mover2);
+                        System.out.println("arrayLength: " + arrayLength);
+                        int arrayHeight = changeable.length() / arrayLength;
+                        System.out.println("arrayHeight: " + arrayHeight);
+                        //if there are not enough rows, then add one
+                        if (changeable.length() % arrayLength != 0) {
+                            arrayHeight++;
                         }
-                    }
-                    //puts the characters into the array
-                    for(int i=0; i<changeable.length(); i++) {
-                        int height = i/arrayLength;
-                        int length = i%arrayLength;
-                        char letter4 = changeable.charAt(i);
-                        if(97 <= letter4 && letter4 <= 122) {
-                            letter4 -= 32;
+                        //the array which the message is put in.
+                        char[][] text = new char[arrayLength][arrayHeight];
+                        //sets every single character in array to @
+                        for (int i = 0; i < text.length; i++) {
+                            for (int j = 0; j < text[0].length; j++) {
+                                text[i][j] = '@';
+                            }
                         }
-                        text[length][height] = letter4;
-                        System.out.println("i: "+ i);
-                        System.out.println("height: "+height);
-                        System.out.println("length: "+length);
-                        System.out.println("character: "+text[length][height]);
-                    }
-                    //gets the characters from the array in a column first array traversal.
-                    for(int i = 0; i<text.length; i++) {
-                        for(int j = 0; j<text[0].length; j++) {
-                            output += Character.toString(text[i][j]);
+                        //puts the characters into the array
+                        for (int i = 0; i < changeable.length(); i++) {
+                            int height = i / arrayLength;
+                            int length = i % arrayLength;
+                            char letter4 = changeable.charAt(i);
+                            if (97 <= letter4 && letter4 <= 122) {
+                                letter4 -= 32;
+                            }
+                            text[length][height] = letter4;
+                            System.out.println("i: " + i);
+                            System.out.println("height: " + height);
+                            System.out.println("length: " + length);
+                            System.out.println("character: " + text[length][height]);
                         }
+                        //gets the characters from the array in a column first array traversal.
+                        for (int i = 0; i < text.length; i++) {
+                            for (int j = 0; j < text[0].length; j++) {
+                                output += Character.toString(text[i][j]);
+                            }
+                        }
+                        //shows the encrypted message.
+                        encryptText.setText(output);
                     }
-                    //shows the encrypted message.
-                    encryptText.setText(output);
                 break;
                 case 2:
                     //gets the unencrypted message, the key, and creates the output string
