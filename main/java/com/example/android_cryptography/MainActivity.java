@@ -3,7 +3,7 @@ package com.example.android_cryptography;
 /* Name: Ishaan Varma
 Co-coder: Ayowade Owojori
 Purpose: Where the functionality of the ciphers are.
-Date: 3/29/22
+Date: 4/4/22
 
  */
 
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String mover2 = key.getText().toString();
                     String output = "";
                     String changeable = "";
-                    if(mover2 != "") {
+                    if(!mover2.equals("")) {
                         //the length and height of the array which the message is put in.
                         int arrayLength = Integer.parseInt(mover2);
                         for(int i=0; i < changed.length(); i++) {
@@ -181,27 +181,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String mover3;
                     mover3 = key.getText().toString();
                     String message_encrypted = "";
-                    for (int i = 0; i < printText.length(); i++) {
-                        char letter = printText.charAt(i);
-                        int order = i%mover3.length();
-                        char shifter = mover3.charAt(order);
-                        if (65 <= letter && letter <= 90 || 97 <= letter && letter <= 122) {
-                            if (65 <= shifter && shifter <= 90 || 97 <= shifter && shifter <= 122) {
-                                if (97 <= letter && letter <= 122) {
-                                    letter -= 32;
-                                }
-                                if(97 <= shifter && shifter <= 122) {
-                                    shifter -=32;
-                                }
-                                letter = (char) ((int) (letter) + (int) (shifter) - 65);
-                                if (letter > 90) {
-                                    letter -= 26;
-                                }
-                                message_encrypted += Character.toString(letter);
+                    String printTextReal = "";
+                    if(!mover3.equals("")) {
+                        for (int i = 0; i < printText.length(); i++) {
+                            if (65 <= (int) (printText.charAt(i)) && 90 >= (int) (printText.charAt(i)) || 97 <= (int) printText.charAt(i)
+                                    && 122 >= (int) printText.charAt(i)) {
+                                printTextReal += printText.charAt(i);
                             }
                         }
+                        printText = printTextReal;
+                        for (int i = 0; i < printText.length(); i++) {
+                            char letter = printText.charAt(i);
+                            int order = i % mover3.length();
+                            char shifter = mover3.charAt(order);
+                            if (65 <= letter && letter <= 90 || 97 <= letter && letter <= 122) {
+                                if (65 <= shifter && shifter <= 90 || 97 <= shifter && shifter <= 122) {
+                                    if (97 <= letter && letter <= 122) {
+                                        letter -= 32;
+                                    }
+                                    if (97 <= shifter && shifter <= 122) {
+                                        shifter -= 32;
+                                    }
+                                    letter = (char) ((int) (letter) + (int) (shifter) - 65);
+                                    if (letter > 90) {
+                                        letter -= 26;
+                                    }
+                                    message_encrypted += Character.toString(letter);
+                                }
+                            }
+                        }
+                        encryptText.setText(message_encrypted);
                     }
-                    encryptText.setText(message_encrypted);
                 break;
                 case 3:
 
