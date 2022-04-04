@@ -122,12 +122,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
                 case 1:
                     //gets the unencrypted message, the key, and the output string
-                    String changeable = print.getText().toString();
+                    String changed = print.getText().toString();
                     String mover2 = key.getText().toString();
                     String output = "";
+                    String changeable = "";
                     if(mover2 != "") {
                         //the length and height of the array which the message is put in.
                         int arrayLength = Integer.parseInt(mover2);
+                        for(int i=0; i < changed.length(); i++) {
+                            if(65<=(int)(changed.charAt(i)) && 90 >= (int)(changed.charAt(i)) || 97<= (int)changed.charAt(i)
+                                    && 122 >= (int)changed.charAt(i)) {
+                                changeable += changed.charAt(i);
+                            }
+                        }
                         System.out.println("arrayLength: " + arrayLength);
                         int arrayHeight = changeable.length() / arrayLength;
                         System.out.println("arrayHeight: " + arrayHeight);
@@ -135,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if (changeable.length() % arrayLength != 0) {
                             arrayHeight++;
                         }
+
                         //the array which the message is put in.
                         char[][] text = new char[arrayLength][arrayHeight];
                         //sets every single character in array to @
