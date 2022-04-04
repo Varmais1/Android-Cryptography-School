@@ -1,3 +1,7 @@
+// Author: Ayowade owojori
+// Date:4/4/22
+// Purpose: Layout of Cryptography assignment
+// Helper: Ishaan Varma
 package com.example.cryptography;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 case 0:
                     boolean right = false;
                     int mover;
-                    //Gets the message, and gets the key.
+                    //Gets the message, and gets the key, and creates teh output string
                     String message = decrypt_code.getText().toString();
                     String key3 = key_code.getText().toString();
                     char mover1;
@@ -106,53 +110,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                     //shows the encrypted message
-                    input_code.setText(encrypted_messsage);
+                    input_code .setText(encrypted_messsage);
 
                     break;
                 case 1:
                     //gets the unencrypted message, the key, and the output string
-                    String changeable = decrypt_code.getText().toString();
+                    String changed = decrypt_code.getText().toString();
                     String mover2 = key_code.getText().toString();
                     String output = "";
-                    //the length and height of the array which the message is put in.
-                    int arrayLength = Integer.parseInt(mover2);
-                    System.out.println("arrayLength: "+arrayLength);
-                    int arrayHeight = changeable.length()/arrayLength;
-                    System.out.println("arrayHeight: "+arrayHeight);
-                    //if there are not enough rows, then add one
-                    if(changeable.length()%arrayLength != 0) {
-                        arrayHeight++;
-                    }
-                    //the array which the message is put in.
-                    char[][] text = new char[arrayLength][arrayHeight];
-                    //sets every single character in array to @
-                    for(int i = 0; i < text.length; i++) {
-                        for(int j = 0; j < text[0].length; j++) {
-                            text[i][j] = '@';
+                    String changeable = "";
+                    if(!mover2.equals("")) {
+                        //the length and height of the array which the message is put in.
+                        int arrayLength = Integer.parseInt(mover2);
+                        for(int i=0; i < changed.length(); i++) {
+                            if(65<=(int)(changed.charAt(i)) && 90 >= (int)(changed.charAt(i)) || 97<= (int)changed.charAt(i)
+                                    && 122 >= (int)changed.charAt(i)) {
+                                changeable += changed.charAt(i);
+                            }
                         }
-                    }
-                    //puts the characters into the array
-                    for(int i=0; i<changeable.length(); i++) {
-                        int height = i/arrayLength;
-                        int length = i%arrayLength;
-                        char letter4 = changeable.charAt(i);
-                        if(97 <= letter4 && letter4 <= 122) {
-                            letter4 -= 32;
+                        System.out.println("arrayLength: " + arrayLength);
+                        int arrayHeight = changeable.length() / arrayLength;
+                        System.out.println("arrayHeight: " + arrayHeight);
+                        //if there are not enough rows, then add one
+                        if (changeable.length() % arrayLength != 0) {
+                            arrayHeight++;
                         }
-                        text[length][height] = letter4;
-                        System.out.println("i: "+ i);
-                        System.out.println("height: "+height);
-                        System.out.println("length: "+length);
-                        System.out.println("character: "+text[length][height]);
-                    }
-                    //gets the characters from the array in a column first array traversal.
-                    for(int i = 0; i<text.length; i++) {
-                        for(int j = 0; j<text[0].length; j++) {
-                            output += Character.toString(text[i][j]);
+
+                        //the array which the message is put in.
+                        char[][] text = new char[arrayLength][arrayHeight];
+                        //sets every single character in array to @
+                        for (int i = 0; i < text.length; i++) {
+                            for (int j = 0; j < text[0].length; j++) {
+                                text[i][j] = '@';
+                            }
                         }
+                        //puts the characters into the array
+                        for (int i = 0; i < changeable.length(); i++) {
+                            int height = i / arrayLength;
+                            int length = i % arrayLength;
+                            char letter4 = changeable.charAt(i);
+                            if (97 <= letter4 && letter4 <= 122) {
+                                letter4 -= 32;
+                            }
+                            text[length][height] = letter4;
+                            System.out.println("i: " + i);
+                            System.out.println("height: " + height);
+                            System.out.println("length: " + length);
+                            System.out.println("character: " + text[length][height]);
+                        }
+                        //gets the characters from the array in a column first array traversal.
+                        for (int i = 0; i < text.length; i++) {
+                            for (int j = 0; j < text[0].length; j++) {
+                                output += Character.toString(text[i][j]);
+                            }
+                        }
+                        //shows the encrypted message.
+                        input_code.setText(output);
                     }
-                    //shows the encrypted message.
-                    input_code.setText(output);
 
                     break;
                 case 2:
@@ -161,27 +175,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String mover3;
                     mover3 = key_code.getText().toString();
                     String message_encrypted = "";
-                    for (int i = 0; i < printText.length(); i++) {
-                        char letter = printText.charAt(i);
-                        int order = i%mover3.length();
-                        char shifter = mover3.charAt(order);
-                        if (65 <= letter && letter <= 90 || 97 <= letter && letter <= 122) {
-                            if (65 <= shifter && shifter <= 90 || 97 <= shifter && shifter <= 122) {
-                                if (97 <= letter && letter <= 122) {
-                                    letter -= 32;
-                                }
-                                if(97 <= shifter && shifter <= 122) {
-                                    shifter -=32;
-                                }
-                                letter = (char) ((int) (letter) + (int) (shifter) - 65);
-                                if (letter > 90) {
-                                    letter -= 26;
-                                }
-                                message_encrypted += Character.toString(letter);
+                    String printTextReal = "";
+                    if(!mover3.equals("")) {
+                        for (int i = 0; i < printText.length(); i++) {
+                            if (65 <= (int) (printText.charAt(i)) && 90 >= (int) (printText.charAt(i)) || 97 <= (int) printText.charAt(i)
+                                    && 122 >= (int) printText.charAt(i)) {
+                                printTextReal += printText.charAt(i);
                             }
                         }
+                        printText = printTextReal;
+                        for (int i = 0; i < printText.length(); i++) {
+                            char letter = printText.charAt(i);
+                            int order = i % mover3.length();
+                            char shifter = mover3.charAt(order);
+                            if (65 <= letter && letter <= 90 || 97 <= letter && letter <= 122) {
+                                if (65 <= shifter && shifter <= 90 || 97 <= shifter && shifter <= 122) {
+                                    if (97 <= letter && letter <= 122) {
+                                        letter -= 32;
+                                    }
+                                    if (97 <= shifter && shifter <= 122) {
+                                        shifter -= 32;
+                                    }
+                                    letter = (char) ((int) (letter) + (int) (shifter) - 65);
+                                    if (letter > 90) {
+                                        letter -= 26;
+                                    }
+                                    message_encrypted += Character.toString(letter);
+                                }
+                            }
+                        }
+                        input_code.setText(message_encrypted);
                     }
-                    input_code.setText(message_encrypted);
                 break;
                 case 3:
 
@@ -272,12 +296,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             output4 += Character.toString(text[j][i]);
                         }
                     }
-                    //shows the encrypted message.
+                    //shows the decrypted message.
                     decrypt_code.setText(output4);
 
                     break;
                 case 2:
-
+                    //gets the unencrypted message, the key, and creates the output string
+                    String printText = input_code.getText().toString();
+                    String mover3;
+                    mover3 = key_code.getText().toString();
+                    String message_encrypted = "";
+                    String printTextReal = "";
+                    if(!mover3.equals("")) {
+                        for (int i = 0; i < printText.length(); i++) {
+                            if (65 <= (int) (printText.charAt(i)) && 90 >= (int) (printText.charAt(i)) || 97 <= (int) printText.charAt(i)
+                                    && 122 >= (int) printText.charAt(i)) {
+                                printTextReal += printText.charAt(i);
+                            }
+                        }
+                        printText = printTextReal;
+                        for (int i = 0; i < printText.length(); i++) {
+                            char letter = printText.charAt(i);
+                            int order = i % mover3.length();
+                            char shifter = mover3.charAt(order);
+                            if (65 <= letter && letter <= 90 || 97 <= letter && letter <= 122) {
+                                if (65 <= shifter && shifter <= 90 || 97 <= shifter && shifter <= 122) {
+                                    if (97 <= letter && letter <= 122) {
+                                        letter -= 32;
+                                    }
+                                    if (97 <= shifter && shifter <= 122) {
+                                        shifter -= 32;
+                                    }
+                                    letter = (char) ((int) (letter) + (int) (shifter) - 65);
+                                    if (letter > 90) {
+                                        letter -= 26;
+                                    }
+                                    message_encrypted += Character.toString(letter);
+                                }
+                            }
+                        }
+                        decrypt_code.setText(message_encrypted);
+                    }
 
                     break;
                 case 3:
